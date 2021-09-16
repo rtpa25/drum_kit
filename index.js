@@ -4,13 +4,14 @@ for (let i = 0; i < arr.length; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
         let tone = arr[i].innerHTML;
         assertion(tone);
+        buttonAnimation(tone);
     });
-
 }
 
 document.addEventListener("keydown", function(event) {
     let key = event.key;
     assertion(key);
+    buttonAnimation(key);
 });
 
 function assertion(e) {
@@ -31,20 +32,28 @@ function assertion(e) {
             let tom4 = new Audio("sounds/tom-4.mp3");
             tom4.play();
             break;
-        case 'j':
+        case "j":
             let snare = new Audio("sounds/snare.mp3");
             snare.play();
             break;
-        case 'k':
+        case "k":
             let crash = new Audio("sounds/crash.mp3");
             crash.play();
             break;
-        case 'l':
+        case "l":
             let kick = new Audio("sounds/kick.mp3");
             kick.play();
             break;
         default:
-            console.log('bad');
+            console.log("bad");
             break;
-    };
+    }
+}
+
+function buttonAnimation(key) {
+    var activeButton = document.querySelector("." + key);
+    activeButton.classList.add("pressed");
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 300);
 }
